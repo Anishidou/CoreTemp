@@ -3,6 +3,15 @@ from tkinter import *
 import pystray
 from PIL import Image, ImageTk
 from pynotifier import Notification
+import os
+
+stream = os.popen('sensors')
+output = stream.read()
+core1Temp = output.splitlines()[7]
+core2Temp = output.splitlines()[8]
+
+print(core1Temp[14:21], core2Temp[14:21])
+
 
 #sends notification
 def Notify():
