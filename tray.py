@@ -6,16 +6,14 @@ from pynotifier import Notification
 import os
 
 stream = os.popen('sensors')
-output = stream.read().splitlines()
+output = stream.read()
+out = output.splitlines()
 cores = []
-for i in output:
-    x = 0
-    if output[i][4:] == "Core":
-        cores[x] = output[i]
-        x = x+1
-
+for i in out:
+    if i[:4] == "Core":
+        cores.append(i)
 for i in cores:
-    print(cores[i][14:21])
+    print(i[14:21])
 
 
 #sends notification
@@ -63,8 +61,13 @@ win.title("Core Temperatures")
 win.geometry("400x500")
 
 #content of window
-label1 = Label(win, text="abc")
+label1 = Label(win, text="Cores:")
 label1.place(x=10,y=10)
+
+ind = 0
+for i in cores:
+    ind = ind+1
+    Label(win, text=i[14:21]).place(x=25,y=50*ind)
 
 #calls function to hide window on clicking close button
 win.protocol('WM_DELETE_WINDOW', hide_window)
