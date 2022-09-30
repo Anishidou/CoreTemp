@@ -8,4 +8,4 @@ a simple python app to check CPU temperatures on linux and notify if above 80°C
   * install lm-sensors using your linux package manager eg: `sudo apt install lm-sensors`
   
 # Running
-Simply go to the project folder open a command window and type: `python3 ct.py` although i recommend using `nohup python3 ct.py &`
+Simply go to the project folder open a command window and type: `python3 ct.py` although i recommend using `nohup python3 ct.py &` so that you can close the command window afterwards
