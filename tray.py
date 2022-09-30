@@ -6,11 +6,16 @@ from pynotifier import Notification
 import os
 
 stream = os.popen('sensors')
-output = stream.read()
-core1Temp = output.splitlines()[7]
-core2Temp = output.splitlines()[8]
+output = stream.read().splitlines()
+cores = []
+for i in output:
+    x = 0
+    if output[i][4:] == "Core":
+        cores[x] = output[i]
+        x = x+1
 
-print(core1Temp[14:21], core2Temp[14:21])
+for i in cores:
+    print(cores[i][14:21])
 
 
 #sends notification
