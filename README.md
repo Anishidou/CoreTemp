@@ -1,7 +1,7 @@
 # CoreTemp
 a simple python app to check CPU temperatures on linux and notify if above 80°C
 
-#Requirements
+# Requirements
 *Python3:
   * install python3 go to the project folder open a command window and type: `pip install -r requirements`
 *lm-sensors:
