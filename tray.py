@@ -22,7 +22,7 @@ def Notify(temp):
     Notification(
         title='High Temperature',
         description=temp,
-        icon_path='ff.ico',
+        icon_path='icon.ico',
         urgency='normal'
     ).send()
 
@@ -50,7 +50,7 @@ def loopTray():
 win=Tk()
 
 #Gets icon for program
-image = Image.open("ff.ico")
+image = Image.open("icon.ico")
 tkImage = ImageTk.PhotoImage(image)
 
 #changes window header
