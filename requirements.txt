@@ -1,0 +1,4 @@
+Pillow==9.2.0
+py_notifier==0.3.2
+pynotifier==0.1
+pystray==0.19.4
