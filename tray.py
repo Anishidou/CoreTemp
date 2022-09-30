@@ -29,7 +29,6 @@ def Notify(temp):
 #defines functions for button clicks on tray
 def on_clicked(icon, item):
     if str(item) == "Open":
-        icon.stop()
         win.after(0,win.deiconify())
     elif str(item) == "Quit":
         icon.stop()
@@ -63,37 +62,26 @@ win.geometry("400x500")
 label1 = Label(win, text="Cores:")
 label1.place(x=10,y=10)
 
-label2 = Label(win, text="Interval per minutes:")
-label2.place(x=10,y=300)
-
 Lb1 = Listbox(win)
 Lb1.pack(ipady=10)
 
-txt1 = Text(win, height=1,width=10)
-txt1.place(x=122,y=300)
-
 #Checks the temperature on the cores and inserts the values
 def updateValues():
-    checkTemp()
-    ind1 = 0
-    for i in cores:
-            Lb1.insert(ind1, i[14:21])
-            ind1 = ind1+1
+    x=0
     while True:
         checkTemp()
-        if int(cores[0][14:21]) > 80:
-            Notify(cores[0][14:21])
-        sleepInt = txt1.get("1.0","end-1c")
-        try:
-            sleepInt = int(sleepInt)
-        except:
-            sleepInt = 300
-        sleep(sleepInt)
-        ind2 = 0
-        for i in cores:
-            Lb1.delete(ind2)
-            Lb1.insert(ind2, i[14:21])
-            ind2 = ind2+1
+        if int(cores[0][15:17]) > 80:
+            if x > 5:
+                x = 0
+                Notify(cores[0][14:21])
+        ind = 0
+        for i in cores:           
+            Lb1.insert(ind, i[:8]+i[15:21])
+            ind = ind+1
+        cores.clear()
+        sleep(5)
+        Lb1.delete(first=0,last=END)
+        x=x+1
 
 #calls function to hide window on clicking close button
 win.protocol('WM_DELETE_WINDOW', hide_window)
